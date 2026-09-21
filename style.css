@@ -735,3 +735,139 @@ nav{gap:2px}
 .arrival-task-form input[type="number"]{-moz-appearance:textfield}.arrival-task-form input[type="number"]::-webkit-inner-spin-button,.arrival-task-form input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 :root[data-theme="dark"] .arrival-summary,:root[data-theme="dark"] .arrival-contract{background:#222e3a;border-color:#405063}:root[data-theme="dark"] .arrival-summary>div,:root[data-theme="dark"] .arrival-contract>div{border-color:#405063}:root[data-theme="dark"] .arrival-summary b,:root[data-theme="dark"] .arrival-contract b,:root[data-theme="dark"] .arrival-section-title b{color:#edf4fc}:root[data-theme="dark"] .arrival-remaining b{color:var(--accent)}
 @media(max-width:700px){.arrival-summary{grid-template-columns:1fr 1fr;gap:14px}.arrival-summary>div{padding:0;border:0}.arrival-contract{grid-template-columns:1fr;gap:12px}.arrival-contract>div{padding:0;border:0}.arrival-task-form{grid-template-columns:1fr!important}.arrival-section-title{align-items:flex-start;flex-direction:column;gap:4px}}
+
+/* 最终字体系统：正文 14、标签 13、说明 12；标题和关键数字按层级放大。 */
+:root{font-size:14px;--el-font-size-base:14px;--font-body:14px;--font-label:14px;--font-caption:12px}
+body,button,input,select,textarea{font-size:var(--font-body)}
+small{font-size:var(--font-caption)}
+
+/* 导航与顶部栏 */
+.nav-item{min-height:48px;padding:11px 14px;gap:13px;color:#607386;font-size:16px}
+.nav-item .ico{width:23px;flex-basis:23px;font-size:21px}
+.nav-item em,.nav-label,.workspace small,.profile small,
+.live-text,.breadcrumb::after{font-size:var(--font-caption)}
+.workspace b,.profile b,.breadcrumb b,.top-actions select,
+.appearance-trigger{font-size:var(--font-body)}
+
+/* 页面层级 */
+.page-head h1,.dashboard-title h1{font-size:25px}
+.card-header h2,.dash-panel-head h2{font-size:16px}
+.subtitle,.dashboard-title p,.card-header p,.dash-panel-head p,
+.hint,.alert{font-size:var(--font-caption)}
+.button,.button.small,.text-link,.toolbar-search,.toolbar-reset,
+.toolbar-export,.dash-row-link{font-size:var(--font-body)}
+
+/* 筛选、表单与 Element Plus 控件 */
+.search,.filter,.field,.field input,.field select,.field textarea,
+.business-dialog .field,.business-dialog .enhanced-control .el-input__inner,
+.business-dialog .enhanced-control .el-textarea__inner,
+.enhanced-control .el-select__selected-item,.enhanced-control .el-input__inner,
+.enhanced-filter .el-select__selected-item,.enhanced-filter .el-input__inner,
+.el-input__inner,.el-select__selected-item,.el-button{font-size:var(--font-body)}
+.field-label,.form-section-title,.business-dialog .form-section-title,
+.request-line-head,.record-filter-field>span,.list-filter-field>span,
+.records-filters .record-filter-field>span,
+.toolbar .list-filter-field>span,
+.toolbar .list-filter-field:has(.search)>span{font-size:var(--font-label)}
+.field .note,.supplier-field .supplier-help,.dictionary-note,
+.purchase-task-note,.arrival-section-title span{font-size:var(--font-caption)}
+.business-dialog .el-dialog__title{font-size:20px}
+
+/* 表格、分页和状态 */
+th,.purchasing-card th,.records-panel th{font-size:var(--font-label)}
+td,.purchasing-card td,td strong{font-size:var(--font-body)}
+.item-cell small,.records-panel .category-line,.records-panel .mono,
+.mono,.records-footer,.records-head-note{font-size:var(--font-caption)}
+.badge,.record-tabs small,.purchase-pending{font-size:var(--font-caption)}
+.record-tabs button,.table-pagination,.table-pagination button{font-size:var(--font-body)}
+
+/* 首页与业务详情 */
+.dash-stat-label,.record-summary span{font-size:var(--font-label)}
+.dash-row-main b,.dash-todo-row b,.dash-quick b,.dash-movement-meta b,
+.purchase-quote>strong,.purchase-quote>span,.purchase-date strong,
+.purchase-task-summary b,.arrival-summary b,.arrival-contract b,
+.arrival-section-title b,.detail-list b,.item-stock-summary span,
+.request-detail-meta b,.request-detail-line b,.request-section-head b,
+.audit-timeline b{font-size:var(--font-body)}
+.dash-stat small,.dash-row-main small,.dash-todo-row small,.dash-quick small,
+.dash-movement-meta small,.dash-empty,.purchase-task-summary small,
+.arrival-summary small,.arrival-contract small,.purchase-date small,
+.item-stock-summary small,.request-detail-meta span,.request-detail-line small,
+.request-section-head span,.audit-timeline small,.audit-timeline p{font-size:var(--font-caption)}
+.dash-alert-row .badge{font-size:var(--font-caption)}
+
+/* 最终字重系统：普通信息不加粗，避免导航、筛选、表格和按钮视觉重量失衡。 */
+body{font-weight:400}
+.nav-item,.workspace b,.profile b,.breadcrumb b,.breadcrumb::after,
+.top-actions select,.role-select .el-select__selected-item,
+.search,.filter,.el-input__inner,.el-select__selected-item,
+.enhanced-control .el-input__inner,.enhanced-control .el-select__selected-item,
+.enhanced-filter .el-input__inner,.enhanced-filter .el-select__selected-item,
+td,.purchasing-card td,.detail-list b,.purchase-quote>span,
+.purchase-date strong,.arrival-contract b{font-weight:400}
+.nav-item.active,.button,.button.small,.text-link,.toolbar-search,
+.toolbar-reset,.toolbar-export,.dash-row-link,.badge,
+.field-label,.record-filter-field>span,.list-filter-field>span,
+.records-filters .record-filter-field>span,
+.toolbar .list-filter-field>span,.record-tabs button,
+th,.purchasing-card th,.records-panel th,
+.metric label,.dash-stat-label,.record-summary span,
+.item-cell strong,.dash-row-main b,.dash-todo-row b,.dash-quick b,
+.dash-movement-meta b,.purchase-quote>strong,.purchase-task-summary b,
+.arrival-summary b,.request-detail-meta b,.request-detail-line b,
+.request-section-head b,.audit-timeline b{font-weight:500}
+.page-head h1,.dashboard-title h1,.card-header h2,.dash-panel-head h2,
+.business-dialog .el-dialog__title,.metric strong,.dash-stat strong,
+.record-summary strong,.item-stock-summary strong,.arrival-remaining b{font-weight:600}
+
+/* 按钮尺寸分级：主操作清晰，列表操作紧凑，不让按钮抢占内容空间。 */
+.button{min-height:34px;height:34px;padding:0 12px;border-radius:8px;font-size:14px}
+.head-actions .button,.dashboard-head .button{height:36px;min-height:36px;padding:0 14px}
+.button.small,.table-actions .button,.purchasing-card .table-actions .button{height:30px;min-height:30px;min-width:0;padding:0 9px;border-radius:7px;font-size:13px}
+.toolbar-search,.toolbar-reset,.toolbar-export{height:36px;min-height:36px;padding:0 13px;font-size:14px}
+.list-filter-actions .toolbar-search,.list-filter-actions .toolbar-reset,
+.records-filter-actions .toolbar-search,.records-filter-actions .toolbar-reset{min-width:64px}
+.business-dialog .el-button{min-width:76px;height:34px;padding:0 14px;font-size:14px;font-weight:500}
+
+/* 首页中的可点击操作统一字号，不因所在卡片不同而忽大忽小。 */
+.dashboard-head .button{min-height:34px;height:34px;padding:0 12px;font-size:14px;font-weight:500}
+.dash-panel-head .text-link,.dash-row-link{
+  min-height:30px;height:30px;padding:0 9px;border-radius:7px;font-size:13px;font-weight:500
+}
+
+/* 人员与部门：使用统一身份单元，替代松散的两行文本。 */
+.person-cell{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;min-width:120px;text-align:left}
+.person-cell strong{display:block;overflow:hidden;max-width:160px;color:#33485b;font-size:14px;font-weight:500;text-overflow:ellipsis;white-space:nowrap}
+.person-dept{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border-radius:6px;background:#f2f5f8;color:#748698;font-size:12px;font-weight:400;white-space:nowrap}
+:root[data-theme="dark"] .person-cell strong{color:#e3edf6}
+:root[data-theme="dark"] .person-dept{background:#273440;color:#b2c0cd}
+
+/* 领用明细筛选：领用人与部门等宽、等高、标签和控件严格对齐。 */
+.records-filters.is-detail .toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;padding:18px 22px}
+.records-filters.is-detail .record-filter-field{height:40px;gap:12px}
+.records-filters.is-detail .record-filter-field>span{flex:0 0 72px;width:72px;text-align:right;font-size:13px;font-weight:500}
+.records-filters.is-detail .record-filter-field .search,
+.records-filters.is-detail .record-filter-field .enhanced-filter,
+.records-filters.is-detail .record-filter-field .el-input__wrapper,
+.records-filters.is-detail .record-filter-field .el-select__wrapper{height:40px;min-height:40px}
+.records-filters.is-detail .records-filter-actions{grid-column:1/-1;height:36px}
+
+/* Element Plus 实际菜单字号：覆盖旧版 12px 规则。 */
+.app-menu .el-menu-item{height:46px;line-height:46px;font-size:14px;font-weight:400;gap:12px}
+.app-menu .el-menu-item .ico{width:21px;height:21px;min-width:21px}
+.app-menu .el-menu-item .ico svg{width:18px;height:18px}
+.app-menu .el-menu-item .nav-text{line-height:1.4}
+.app-menu .el-menu-item.is-active{font-weight:500}
+.app-menu .el-menu-item em{font-size:12px;font-weight:500}
+
+/* 顶部信息适度放大，提升演示环境下的可读性。 */
+.global-search-trigger{font-size:14px}
+.role-select .el-select__selected-item{font-size:14px}
+.live-text{font-size:13px}
+.dashboard-date{font-size:13px}
+
+/* 页面名称已在内容区展示，顶栏只保留系统名称，避免重复。 */
+.breadcrumb{display:flex;align-items:center;min-width:0}
+.breadcrumb b,.breadcrumb span,.breadcrumb::before{display:none}
+.breadcrumb::after{content:'库存与采购申请管理系统';display:block;color:#718294;font-size:14px;font-weight:500;line-height:1;white-space:nowrap}
+.topbar{padding-left:24px}
