@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>好财 · 库存与采购申请管理系统</title>
+  <style>问问
+    html,body{margin:0;min-height:100%;background:#f7f9fc;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    #app[v-cloak]{display:none}
+    #boot-screen{position:fixed;inset:0;display:flex;background:#f7f9fc;color:#304052}
+    #boot-screen .boot-side{width:226px;flex:none;background:#fff;border-right:1px solid #e8edf3;padding:27px 22px;box-sizing:border-box}
+    #boot-screen .boot-brand{font-size:18px;font-weight:700;margin-bottom:36px}
+    #boot-screen .boot-line{height:35px;margin:8px 0;border-radius:8px;background:#f0f4fa}
+    #boot-screen .boot-main{flex:1;padding:29px 42px;min-width:0;box-sizing:border-box}
+    #boot-screen .boot-top{height:36px;width:45%;max-width:320px;border-radius:8px;background:#eaf0f8;margin-bottom:48px}
+    #boot-screen .boot-title{height:28px;width:180px;border-radius:7px;background:#e6edf7;margin-bottom:28px}
+    #boot-screen .boot-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;max-width:1140px;background:#e6edf5;border:1px solid #e6edf5;border-radius:11px;overflow:hidden}
+    #boot-screen .boot-cards span{height:116px;background:#fff}
+    @media(max-width:760px){#boot-screen .boot-side{width:60px;padding:22px 10px}#boot-screen .boot-brand{font-size:0}#boot-screen .boot-brand::before{content:"好";font-size:17px}#boot-screen .boot-line{height:27px}#boot-screen .boot-main{padding:25px 18px}#boot-screen .boot-cards{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+  <div id="boot-screen" aria-label="页面加载中"><div class="boot-side"><div class="boot-brand">好财</div><div class="boot-line"></div><div class="boot-line"></div><div class="boot-line"></div><div class="boot-line"></div></div><div class="boot-main"><div class="boot-top"></div><div class="boot-title"></div><div class="boot-cards"><span></span><span></span><span></span><span></span></div></div></div>
+  <div id="app" class="app" v-cloak>
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">H</span><strong>好财</strong></div>
+      <nav><el-menu class="app-menu" :default-active="page" @select="go"><el-menu-item v-for="(label,key) in names" :key="key" :index="key"><span class="ico" v-html="navIcons[key]"></span><span class="nav-text">{{label}}</span><em v-if="key==='alerts' && warningCount">{{warningCount}}</em></el-menu-item></el-menu></nav>
+      <div class="sidebar-bottom"><div class="profile"><span class="avatar">{{currentUser.name[0]}}</span><div><b>{{currentUser.name}}</b><small>{{currentUser.role}}</small></div></div></div>
+    </aside>
+    <main class="main"><header class="topbar"><div class="breadcrumb">好财 <span>/</span> <b>{{names[page]}}</b></div><div class="top-actions"><button class="global-search-trigger" @click="searchOpen=true" title="全局搜索"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>搜索物品、申请、任务</span></button><span class="live-dot"></span><span class="live-text">演示环境</span><el-select v-model="state.role" class="role-select" title="切换演示角色"><el-option v-for="(person,key) in users" :key="key" :label="person.role + ' · ' + person.name + (person.role==='部门负责人' ? '（'+person.dept+'）' : '')" :value="key"></el-option></el-select><div class="appearance-wrap"><button class="appearance-trigger" @click="themeOpen=!themeOpen" :aria-expanded="themeOpen" title="切换外观">◐ <span>外观</span></button><div v-if="themeOpen" class="appearance-panel"><div class="appearance-head"><b>外观设置</b><button @click="themeOpen=false" aria-label="关闭外观设置">×</button></div><div class="appearance-label">显示模式</div><div class="appearance-choices"><button :class="{selected:appearance.mode==='light'}" @click="appearance.mode='light'">☀ 浅色</button><button :class="{selected:appearance.mode==='dark'}" @click="appearance.mode='dark'">☾ 深色</button></div><div class="appearance-label">主题色</div><div class="color-choices"><button v-for="color in accentOptions" :key="color.value" :class="{selected:appearance.accent===color.value}" @click="appearance.accent=color.value"><span class="color-dot" :style="{background:color.hex}"></span>{{color.label}}</button></div><div class="appearance-label">显示密度</div><div class="appearance-choices"><button :class="{selected:appearance.density==='comfortable'}" @click="appearance.density='comfortable'">舒适</button><button :class="{selected:appearance.density==='compact'}" @click="appearance.density='compact'">紧凑</button></div><small>设置会保存在当前浏览器中</small></div></div><el-button class="reset-button" @click="reset" title="重置演示数据">↻</el-button></div></header><div class="content" @click="onContentClick" @input="onFilter" @change="onFilter" @keydown.enter="onFilterEnter" v-html="pageHTML"></div></main>
+  <el-dialog v-model="searchOpen" class="global-search-dialog" width="620px" top="12vh" :show-close="false"><div class="search-dialog"><div class="search-dialog-input"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><el-input v-model="globalQuery" autofocus placeholder="搜索物品名称、编码、采购申请或任务编号" aria-label="全局搜索"></el-input><button @click="searchOpen=false" aria-label="关闭搜索">×</button></div><div class="search-results"><div class="search-result-label">{{globalQuery ? '搜索结果' : '常用入口'}}</div><button v-for="result in globalResults" :key="result.type+result.id" class="search-result" @click="openResult(result)"><span class="search-result-icon" v-html="navIcons[result.page]"></span><span><b>{{result.title}}</b><small>{{result.subtitle}}</small></span></button><div v-if="!globalResults.length" class="search-empty">未找到匹配结果，试试物品名称或申请编号</div></div></div></el-dialog>
+  </div>
+  <div id="modalRoot"></div><div id="toastRoot"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
