@@ -464,7 +464,7 @@ nav{gap:2px}
 .toolbar .list-filter-field .enhanced-filter .el-select,.toolbar .list-filter-field .enhanced-filter .el-date-editor{width:100%!important}
 .toolbar .list-filter-actions{grid-column:4;justify-self:end;align-self:center;margin:0}
 .records-filters .toolbar,.records-filters.is-detail .toolbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:20px;row-gap:14px;align-items:center;padding:18px 20px}
-.records-filters.is-detail .toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}
+.records-filters.is-detail .toolbar{grid-template-columns:repeat(4,minmax(0,1fr))}
 .records-filters .record-filter-field,.records-filters .record-filter-field.search-field,.records-filters .record-filter-field.date-field,.records-filters.is-detail .record-filter-field.dept-field{grid-column:auto;width:100%;height:36px;min-width:0;display:flex;flex-direction:row;align-items:center;gap:12px}
 .records-filters .record-filter-field>span,.records-filters .record-filter-field.search-field>span{flex:0 0 72px;width:72px;font-size:11px}
 .records-filters .record-filter-field .search,.records-filters .record-filter-field .enhanced-filter{width:auto;min-width:0;flex:1 1 0}
@@ -673,6 +673,21 @@ nav{gap:2px}
 @media(max-width:1100px){.toolbar:has(.list-filter-field){display:flex}.toolbar .list-filter-actions{grid-column:auto;justify-self:auto}.toolbar .list-filter-field,.toolbar .list-filter-field:has(.search){flex:1 1 330px;width:auto;max-width:none}}
 @media(max-width:600px){.toolbar:has(.list-filter-field){display:flex}.toolbar .list-filter-field,.toolbar .list-filter-field:has(.search){flex:1 1 100%;width:100%;max-width:none}.toolbar .list-filter-actions{width:100%;justify-content:flex-end}}
 
+/* 物品与入库筛选：三个条件与操作按钮同行。 */
+.inbound-card .toolbar:has(.list-filter-field),.items-card .toolbar:has(.list-filter-field){display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:14px 18px}.inbound-card .toolbar .list-filter-field,.inbound-card .toolbar .list-filter-field:has(.search),.items-card .toolbar .list-filter-field,.items-card .toolbar .list-filter-field:has(.search){width:100%;max-width:none;min-width:0}.inbound-card .toolbar .list-filter-actions,.items-card .toolbar .list-filter-actions{grid-column:4;justify-self:end;justify-content:flex-end;margin:0}
+@media(max-width:1280px){.inbound-card .toolbar:has(.list-filter-field),.items-card .toolbar:has(.list-filter-field){grid-template-columns:repeat(2,minmax(0,1fr))}.inbound-card .toolbar .list-filter-actions,.items-card .toolbar .list-filter-actions{grid-column:1/-1;justify-self:center;justify-content:center}}
+@media(max-width:700px){.inbound-card .toolbar:has(.list-filter-field),.items-card .toolbar:has(.list-filter-field){grid-template-columns:1fr}.inbound-card .toolbar .list-filter-actions,.items-card .toolbar .list-filter-actions{grid-column:1}}
+
+/* 领用出库筛选：物品搜索、状态和操作同行。 */
+.issues-card .toolbar:has(.list-filter-field){display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:14px 18px}.issues-card .toolbar .list-filter-field,.issues-card .toolbar .list-filter-field:has(.search){width:100%;max-width:none;min-width:0}.issues-card .toolbar .list-filter-actions{grid-column:4;justify-self:end;margin:0}
+@media(max-width:1280px){.issues-card .toolbar:has(.list-filter-field){grid-template-columns:repeat(2,minmax(0,1fr))}.issues-card .toolbar .list-filter-actions{grid-column:1/-1;justify-self:center}}
+@media(max-width:700px){.issues-card .toolbar:has(.list-filter-field){grid-template-columns:1fr}.issues-card .toolbar .list-filter-actions{grid-column:1}}
+
+/* 采购申请筛选：物品、部门、状态与操作同行。 */
+.requests-card .toolbar:has(.list-filter-field){display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:14px 18px}.requests-card .toolbar .list-filter-field,.requests-card .toolbar .list-filter-field:has(.search){width:100%;max-width:none;min-width:0}.requests-card .toolbar .list-filter-actions{grid-column:4;justify-self:end;margin:0}
+@media(max-width:1280px){.requests-card .toolbar:has(.list-filter-field){grid-template-columns:repeat(2,minmax(0,1fr))}.requests-card .toolbar .list-filter-actions{grid-column:1/-1;justify-self:center}}
+@media(max-width:700px){.requests-card .toolbar:has(.list-filter-field){grid-template-columns:1fr}.requests-card .toolbar .list-filter-actions{grid-column:1}}
+
 /* 入库详情：强调数量与金额，其余信息按业务分组。 */
 .inbound-detail-hero{display:flex;align-items:center;gap:13px;padding:16px 18px;border:1px solid var(--accent-border);border-radius:12px;background:linear-gradient(135deg,var(--accent-soft),#fff)}
 .inbound-detail-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:var(--accent);color:#fff}.inbound-detail-icon svg{width:20px;height:20px}
@@ -867,7 +882,7 @@ th,.purchasing-card th,.records-panel th,
 :root[data-theme="dark"] .person-dept{background:#273440;color:#b2c0cd}
 
 /* 领用明细筛选：领用人与部门等宽、等高、标签和控件严格对齐。 */
-.records-filters.is-detail .toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;padding:18px 22px}
+.records-filters.is-detail .toolbar{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 18px;padding:18px 22px}
 .records-filters.is-detail .record-filter-field{height:40px;gap:12px}
 .records-filters.is-detail .record-filter-field>span{flex:0 0 72px;width:72px;text-align:right;font-size:13px;font-weight:500}
 .records-filters.is-detail .record-filter-field .search,
@@ -875,6 +890,8 @@ th,.purchasing-card th,.records-panel th,
 .records-filters.is-detail .record-filter-field .el-input__wrapper,
 .records-filters.is-detail .record-filter-field .el-select__wrapper{height:40px;min-height:40px}
 .records-filters.is-detail .records-filter-actions{grid-column:1/-1;height:36px}
+@media(max-width:1200px){.records-filters.is-detail .toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.records-filters.is-detail .toolbar{grid-template-columns:minmax(0,1fr)}}
 
 /* Element Plus 实际菜单字号：覆盖旧版 12px 规则。 */
 .app-menu .el-menu-item{height:46px;line-height:46px;font-size:14px;font-weight:400;gap:12px}
