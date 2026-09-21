@@ -871,3 +871,15 @@ th,.purchasing-card th,.records-panel th,
 .breadcrumb b,.breadcrumb span,.breadcrumb::before{display:none}
 .breadcrumb::after{content:'库存与采购申请管理系统';display:block;color:#718294;font-size:14px;font-weight:500;line-height:1;white-space:nowrap}
 .topbar{padding-left:24px}
+
+/* Element Plus 控件内部 input 不继承业务表单的原生输入框外观，避免双层边框。 */
+.field .enhanced-control input,
+.business-dialog .field .enhanced-control input{
+  width:100%;height:auto;min-height:0!important;padding:0!important;
+  border:0!important;border-radius:0!important;outline:0!important;
+  background:transparent!important;box-shadow:none!important
+}
+.field .enhanced-control .el-select__input{margin:0;color:#34495b;font-size:14px}
+.field .enhanced-control .el-select__wrapper,
+.field .enhanced-control .el-input__wrapper{width:100%;padding:0 12px;overflow:hidden}
+:root[data-theme="dark"] .field .enhanced-control .el-select__input{color:#d8e2ed}
