@@ -924,3 +924,13 @@ th,.purchasing-card th,.records-panel th,
 .field .enhanced-control .el-select__wrapper,
 .field .enhanced-control .el-input__wrapper{width:100%;padding:0 12px;overflow:hidden}
 :root[data-theme="dark"] .field .enhanced-control .el-select__input{color:#d8e2ed}
+
+/* 交付版侧边栏：放大品牌、导航和当前角色信息。 */
+.brand{height:56px;padding:0 9px 10px;gap:11px}.brand-mark{width:36px;height:36px;flex-basis:36px;border-radius:10px;font-size:19px}.brand strong{font-size:22px;letter-spacing:-.3px}
+.app-menu .el-menu-item{height:48px;line-height:48px;padding:0 14px!important;font-size:15px;column-gap:13px}.app-menu .el-menu-item .ico{width:22px;height:22px;min-width:22px}.app-menu .el-menu-item .ico svg{width:20px;height:20px}.app-menu .el-menu-item em{font-size:12px}
+.profile{gap:11px;padding-top:16px}.avatar{width:35px;height:35px;font-size:14px}.profile b{font-size:14px}.profile small{font-size:12px}
+@media(max-width:760px){.brand{height:45px;padding:0 0 7px}.brand-mark{width:32px;height:32px;flex-basis:32px;font-size:18px}.app-menu .el-menu-item{height:46px;padding:0!important}.profile{padding-top:12px}.avatar{width:33px;height:33px}}
+
+/* 大屏内容区随可用宽度展开，减少 1920px 及以上分辨率的无效留白。 */
+.content{width:100%;max-width:2200px;padding-right:clamp(24px,2.2vw,42px);padding-left:clamp(24px,2.2vw,42px)}
+@media(max-width:760px){.content{padding-right:15px;padding-left:15px}}
