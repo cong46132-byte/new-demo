@@ -101,6 +101,10 @@ try{
   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('cangxu-demo-v1')).items.find(i=>i.id==='i2').stock===18);
   assert.equal(await page.evaluate((id)=>JSON.parse(localStorage.getItem('cangxu-demo-v1')).movements.some(m=>m.type==='退货入库'&&m.issueId===id),issuedId),true);
   await page.getByRole('navigation').getByRole('menuitem',{name:'入库管理'}).click();
+  await page.locator('[data-action^="inboundDetail:"]').first().click();
+  await page.getByRole('heading',{name:'入库详情'}).waitFor();
+  assert.ok(await page.getByText('入库金额',{exact:true}).count(),'入库详情展示金额与完整信息');
+  await page.getByRole('button',{name:'取消'}).click();
   await page.locator('[data-action="newInbound"]').click();
   await selectDialog('type','退货入库');
   assert.equal(await page.locator(`#dialogForm [data-enhanced="issueId"] + .enhanced-control`).innerText().then(x=>x.includes(issuedId)),false,'全部退回后不能重复退回');
